@@ -1,0 +1,29 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_xinge_push (0.0.1):
+    - Flutter
+    - QQ_XGPush
+  - QQ_XGPush (3.2.2)
+
+DEPENDENCIES:
+  - Flutter (from `.symlinks/flutter/ios-release`)
+  - flutter_xinge_push (from `.symlinks/plugins/flutter_xinge_push/ios`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - QQ_XGPush
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: ".symlinks/flutter/ios-release"
+  flutter_xinge_push:
+    :path: ".symlinks/plugins/flutter_xinge_push/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  flutter_xinge_push: 1f45f73d3cddb85f83f98e6b896ba18b508ceae6
+  QQ_XGPush: ab74daad9c70491fe9e97d12bc8cc04115b4fef5
+
+PODFILE CHECKSUM: aff02bfeed411c636180d6812254b2daeea14d09
+
+COCOAPODS: 1.6.0
