@@ -92,10 +92,15 @@ FlutterMethodChannel* channel;
     }
     
 }
-- (void)xgPushDidReceiveRemoteNotification:(id)notification withCompletionHandler:(void (^)(NSUInteger))completionHandler {
+- (void)delayMethod{
     if(channel != nil){
         [channel invokeMethod:@"onReceivedMessage" arguments: nil];
     }
+}
+- (void)xgPushDidReceiveRemoteNotification:(id)notification withCompletionHandler:(void (^)(NSUInteger))completionHandler {
+    [self performSelector:@selector(delayMethod) withObject:nil/*可传任意类型参数*/ afterDelay:1.5];
+    
+    
     if (@available(iOS 10.0, *)) {
         completionHandler(UNNotificationPresentationOptionAlert);
     } else {
