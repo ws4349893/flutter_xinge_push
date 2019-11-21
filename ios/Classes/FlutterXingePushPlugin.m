@@ -92,15 +92,11 @@ FlutterMethodChannel* channel;
     }
     
 }
-- (void)delayMethod{
+- (void)xgPushDidReceiveRemoteNotification:(id)notification withCompletionHandler:(void (^)(NSUInteger))completionHandler {
+    
     if(channel != nil){
         [channel invokeMethod:@"onReceivedMessage" arguments: nil];
     }
-}
-- (void)xgPushDidReceiveRemoteNotification:(id)notification withCompletionHandler:(void (^)(NSUInteger))completionHandler {
-    [self performSelector:@selector(delayMethod) withObject:nil/*可传任意类型参数*/ afterDelay:1.5];
-    
-    
     if (@available(iOS 10.0, *)) {
         completionHandler(UNNotificationPresentationOptionAlert);
     } else {
@@ -108,9 +104,14 @@ FlutterMethodChannel* channel;
     }
     
 }
+
+- (void)delayMethod :(UNNotificationResponse*) response API_AVAILABLE(ios(10.0)){
+    [msgChannel sendMessage:[[[[response notification] request] content]categoryIdentifier]];
+}
 - (void)xgPushUserNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler  API_AVAILABLE(ios(10.0)){
     NSLog(@"%@ %@",@"信鸽:", @"点击通知栏");
-    [msgChannel sendMessage:[[[[response notification] request] content]categoryIdentifier]];
+    [self performSelector:@selector(delayMethod:) withObject:response/*可传任意类型参数*/ afterDelay:1.5];
+    
 
     completionHandler();
 }
