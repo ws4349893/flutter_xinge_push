@@ -110,7 +110,7 @@ FlutterMethodChannel* channel;
 }
 - (void)xgPushUserNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler  API_AVAILABLE(ios(10.0)){
     NSLog(@"%@ %@",@"信鸽:", @"点击通知栏");
-    #[self performSelector:@selector(delayMethod:) withObject:response/*可传任意类型参数*/ afterDelay:1.5];
+    //[self performSelector:@selector(delayMethod:) withObject:response/*可传任意类型参数*/ afterDelay:1.5];
     [msgChannel sendMessage:[[[[response notification] request] content]categoryIdentifier]];
 
     completionHandler();
